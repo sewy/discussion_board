@@ -1,0 +1,35 @@
+<h1>Discussion Board</h1>
+<p>Welcome {{user}}</p>
+<hr>
+<p>Search: <input type="text" ng-model="search"></p>
+<table>
+	<tr>
+		<th>Category</th>
+		<th>Topic</th>
+		<th>User Name</th>
+		<th>Posts</th>
+	</tr>
+	<tr ng-repeat="topic in topics | filter:search">
+		<td>{{topic.category}}</td>
+		<td><a href="#/topic/{{topic._id}}">{{topic.topic}}</a></td>
+		<td><a href="#/user/{{topic._user._id}}">{{topic._user.name}}</a></td>
+		<td>{{topic.posts.length}}</td>
+	</tr>
+</table>
+<form>
+	<ul>
+		<li>Add a new Topic</li>
+		<li>Topic: <input type="text" ng-model="topic.topic"></li>
+		<li>Description: <textarea rows=5 cols=45 ng-model="topic.description"></textarea></li>
+		<li>
+			Category:
+			<select ng-model="topic.category">
+				<option value="RPG">RPG's</option>
+				<option value="Puzzle">Puzzle</option>
+				<option value="Shooter">Shooters</option>
+				<option value="RTS">RTS</option>
+			</select>
+		</li>
+		<li><input type="submit" value="Submit" ng-click="newtopic(topic)"></li>
+	</ul>
+</form>
